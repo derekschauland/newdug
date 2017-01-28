@@ -18,7 +18,16 @@
 #Import-Module Azure -Verbose
 
 # Authenticate to your Azure account
-Login-AzureRmAccount
+Import-Module AzureRM.profile
+if (Get-AzureRmSubscription -SubscriptionId 0cff335b-e4a2-4bd7-a1c9-514d96399af8)
+{
+    Write-Host "Already signed into Azure"
+}
+else
+{
+    Login-AzureRmAccount
+    
+}
 
 # Adjust the 'yournamehere' part of these three strings to
 # something unique for you. Leave the last two characters in each.
