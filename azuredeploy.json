@@ -43,7 +43,7 @@
     }  
   },
   "variables": {
-    "storageAccountName": "[concat(uniquestring(resourceGroup().name), '-', parameters('storageaccount'))]",
+    "storageAccountName": "[parameters('storageaccount')]",
     "nicName": "myVMNic",
     "addressPrefix": "10.0.0.0/16",
     "subnetName": "Subnet",
