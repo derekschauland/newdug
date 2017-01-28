@@ -38,8 +38,8 @@ New-AzureRmResourceGroup -Name $rgname -Location $Location
 
 # Parameters for the template and configuration
 $MyParams = @{
-    newStorageAccountName = $saname
-    location              = $location
+    #newStorageAccountName = $saname
+    #location              = $location
     #domainName            = 'atwposh.local'
     #addnsName             = $addnsName
    }
