@@ -45,7 +45,7 @@
 
       },
 
-      "defaultValue": "https://raw.githubusercontent.com/derekschauland/newdug/master/CreateVmwithIIS.ps1"
+      "defaultValue": "https://raw.githubusercontent.com/derekschauland/newdug/master/"
 
     }
   },
