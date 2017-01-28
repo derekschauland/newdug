@@ -200,7 +200,7 @@
               }
       },
 
-        "DataBlobUri": "[concat(parameters('assetLocation'),'CreateVmwithIIS.psd1')]"
+        "DataBlobUri": "[concat(parameters('assetLocation'),'CreateVmwithIIS.ps1')]"
         }
       }
   ],
