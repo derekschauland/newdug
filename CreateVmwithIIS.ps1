@@ -1,4 +1,4 @@
-﻿configuration CreateADDomainWithData
+﻿configuration CreateVMwithIIS
 { 
    param 
    ( 
@@ -9,7 +9,7 @@
     ) 
     
     Import-DscResource -ModuleName PSDesiredStateConfiguration
-    Import-DscResource -ModuleName xStorage
+ 
 
     [System.Management.Automation.PSCredential ]$DomainCreds = New-Object System.Management.Automation.PSCredential ("$DomainName\$($AdminCreds.UserName)", $AdminCreds.Password)
 
@@ -23,18 +23,28 @@
             AllowModuleOverWrite = $true
         }
 
-        xWaitforDisk Disk2
-        {
-             DiskNumber = 2
-             RetryIntervalSec =$RetryIntervalSec
-             RetryCount = $RetryCount
-        }
-
-        xDisk IISDataDisk
-        {
-            DiskNumber = 2
-            DriveLetter = 'F'
-        }
+            WindowsFeature Management {
+ 
+            Name = 'Web-Mgmt-Service'
+            Ensure = 'Present'
+            DependsOn = @('[WindowsFeature]IIS')
+        }
+ 
+        Registry RemoteManagement {
+            Key = 'HKLM:\SOFTWARE\Microsoft\WebManagement\Server'
+            ValueName = 'EnableRemoteManagement'
+            ValueType = 'Dword'
+            ValueData = '1'
+            DependsOn = @('[WindowsFeature]IIS','[WindowsFeature]Management')
+       }
+ 
+       Service StartWMSVC {
+            Name = 'WMSVC'
+            StartupType = 'Automatic'
+            State = 'Running'
+            DependsOn = '[Registry]RemoteManagement'
+ 
+       }
 
         WindowsFeature IIS 
         { 
