@@ -194,21 +194,25 @@
       "resources":[
         {
           "type": "extensions",
-      "name": "[concat('configureIIS')]",
+          "name": "[concat('configureIIS')]",
           "apiVersion": "2015-06-15",
-      "location": "[resourceGroup().location]",
+          "location": "[resourceGroup().location]",
           "dependsOn": [
             "[resourceId('microsoft.compute/virtualMachines', variables('vmName'))]"
-          ],
+            ],
         "properties": {
-          "publisher": "Microsoft.PowerShell",
+              "publisher": "Microsoft.PowerShell",
               "type": "DSC",
               "typeHandlerVersion":"2.11",
               "autoUpgradeMinorVersion": true,
               "settings": {
                   "ConfigurationFunction": "[variables('vmConfigurationFunction')]"
                     },
-              "DataBlobUri": "[concat(parameters('assetLocation'),'CreateVmwithIIS.ps1')]"
+              "protectedSettings": {
+                  "DataBlobUri": "[concat(parameters('assetLocation'),'CreateVmwithIIS.ps1')]"
+
+              }
+              
             }  
         }
         ]
