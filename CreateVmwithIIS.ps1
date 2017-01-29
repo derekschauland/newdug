@@ -2,10 +2,17 @@
 {
          node "localhost"
         {
-            WindowsFeature InstallWebServer
+            WindowsFeature IIS
             {
-                Ensure = "Present"
-                Name = "Web-Server"
+                    Ensure = "Present"
+                    Name = "Web-Server"
+            }
+        
+            windowsfeature AspNet45
+            {
+                ensure = "present"
+                name = "Web-Asp-Net45"
+               
             }
         }
 }
