@@ -193,7 +193,7 @@
       },
       "resources":[
         {
-          "type": "extensions",
+          "type": "Miceosoft.Compute/virtualMachines/extensions",
           "name": "[concat(variables('vmName'),'/ConfigureIIS')]",
           "apiVersion": "2015-06-15",
           "location": "[resourceGroup().location]",
