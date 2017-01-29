@@ -2,7 +2,7 @@
 {
          node "localhost"
         {
-            WindowsFeature IIS
+            WindowsFeature InstallWebServer
             {
                 Ensure = "Present"
                 Name = "Web-Server"
