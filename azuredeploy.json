@@ -194,7 +194,7 @@
       "resources":[
         {
           "type": "extensions",
-          "name": "[concat('configureIIS')]",
+          "name": "[concat(variables('vmName'),'/ConfigureIIS']",
           "apiVersion": "2015-06-15",
           "location": "[resourceGroup().location]",
           "dependsOn": [
