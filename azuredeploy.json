@@ -193,9 +193,9 @@
       },
       "resources":[
         {
-          "type": "Microsoft.Computer/virtualMachines/extensions",
+          "type": "extensions",
       "name": "[concat(variables('vmName'),'/configureIIS')]",
-          "apiVersion": "2015-05-01-preview",
+          "apiVersion": "2015-06-15",
       "location": "[resourceGroup().location]",
           "dependsOn": [
             "[resourceId('microsoft.compute/virtualMachines', variables('vmName'))]"
@@ -212,8 +212,6 @@
             }  
         }
         ]
-        
-  
     }
   ]
 }
