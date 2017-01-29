@@ -211,8 +211,7 @@
         "DataBlobUri": "[concat(parameters('assetLocation'),'CreateVmwithIIS.ps1')]"
       }  
    }
-  ]
-},
+  ],
   "outputs": {
     "hostname": {
       "type": "string",
