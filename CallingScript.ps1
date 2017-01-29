@@ -34,7 +34,7 @@ else
 $URI       = 'https://raw.githubusercontent.com/derekschauland/newdug/master/azuredeploy.json'
 $Location  = 'centralus'
 $rgname    = 'newdugrg'
-#$saname    = 'newdugsa'     # Lowercase required here
+$saname    = 'newdugsa'     # Lowercase required here
 #$addnsName = 'atwposhad'     # Lowercase required
 
 # Check that the public dns $addnsName is available
@@ -47,8 +47,8 @@ New-AzureRmResourceGroup -Name $rgname -Location $Location
 
 # Parameters for the template and configuration
 $MyParams = @{
-    #StorageAccount         = $saname
-    #location              = $location
+    #StorageAccountName         = $saname
+    location              = $location
     #domainName            = 'atwposh.local'
     #addnsName             = $addnsName
    }
