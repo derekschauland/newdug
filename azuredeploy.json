@@ -189,21 +189,29 @@
             "enabled": "true",
             "storageUri": "[reference(resourceId('Microsoft.Storage/storageAccounts/', variables('storageAccountName'))).primaryEndpoints.blob]"
           }
-        },
-        "publisher": "Microsoft.PowerShell",
+        }
+      },
+"resources":[
+  {
+    "type": "Microsoft.Computer/virtualMachines/extensions",
+    "name": "[concat(variables('vmName'),'/configureIIS')",
+    "apiVersion": "2015-05-01-preview",
+    "location": "[resourceGroup().location",
+    "dependsOn": [
+      "[resourceId('microsoft.compute/virtualMachines', variables('vmName'))]"
+    ],
+  "properties": {
+    "publisher": "Microsoft.PowerShell",
         "type": "DSC",
         "typeHandlerVersion":"2.11",
         "autoUpgradeMinorVersion": true,
         "settings": {
-            
             "ConfigurationFunction": "[variables('vmConfigurationFunction')]"
-              }
-      },
-
+              },
         "DataBlobUri": "[concat(parameters('assetLocation'),'CreateVmwithIIS.ps1')]"
-        }
-      }
-  ],
+  }  
+  }
+],
   "outputs": {
     "hostname": {
       "type": "string",
