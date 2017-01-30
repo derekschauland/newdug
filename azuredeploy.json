@@ -207,7 +207,7 @@
               "autoUpgradeMinorVersion": true,
               "settings": {
                   "ConfigurationFunction": "[variables('vmConfigurationFunction')]",
-                  "modulesURI": "[concat(parameters('assetLocation'),'CreateVmwithIIS.ps1')]"
+                  "modulesURI": "[concat(parameters('assetLocation'),'CreateVmwithIIS.ps1.zip')]"
                     }
             }  
         }
