@@ -203,7 +203,7 @@
         "properties": {
               "publisher": "Microsoft.PowerShell",
               "type": "DSC",
-              "typeHandlerVersion":"2.11",
+              "typeHandlerVersion":"2.20",
               "autoUpgradeMinorVersion": true,
               "settings": {
                   "ConfigurationFunction": "[variables('vmConfigurationFunction')]"
