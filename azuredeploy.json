@@ -203,16 +203,12 @@
         "properties": {
               "publisher": "Microsoft.PowerShell",
               "type": "DSC",
-              "typeHandlerVersion":"2.20",
+              "typeHandlerVersion":"2.11",
               "autoUpgradeMinorVersion": true,
               "settings": {
-                  "ConfigurationFunction": "[variables('vmConfigurationFunction')]"
-                    },
-              "protectedSettings": {
-                  "DataBlobUri": "[concat(parameters('assetLocation'),'CreateVmwithIIS.ps1')]"
-
-              }
-              
+                  "ConfigurationFunction": "[variables('vmConfigurationFunction')]",
+                  "modulesURI": "[concat(parameters('assetLocation'),'CreateVmwithIIS.ps1')]"
+                    }
             }  
         }
         ]
