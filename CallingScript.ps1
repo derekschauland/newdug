@@ -19,7 +19,7 @@
 
 # Authenticate to your Azure account
 Import-Module AzureRM.profile
-if (Get-AzureRmSubscription -SubscriptionId 0cff335b-e4a2-4bd7-a1c9-514d96399af8)
+if (Get-AzureRmSubscription -SubscriptionId 0cff33xxxxxxxxxxxxxxxxx)
 {
     Write-Host "Already signed into Azure"
 }
