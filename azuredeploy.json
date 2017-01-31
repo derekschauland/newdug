@@ -190,9 +190,9 @@
             "storageUri": "[reference(resourceId('Microsoft.Storage/storageAccounts/', variables('storageAccountName'))).primaryEndpoints.blob]"
           }
         }
+      }
       },
-      "resources":[
-        {
+      {
           "type": "Microsoft.Compute/virtualMachines/extensions",
           "name": "[concat(variables('vmName'),'/ConfigureIIS')]",
           "apiVersion": "2015-06-15",
@@ -210,8 +210,7 @@
                   "modulesURI": "[concat(parameters('assetLocation'),'CreateVmwithIIS.ps1.zip')]"
                     }
             }  
-        }
-        ]
+      }
     }
   ]
 }
