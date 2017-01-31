@@ -193,23 +193,28 @@
       }
       },
       {
-          "type": "Microsoft.Compute/virtualMachines/extensions",
-          "name": "[concat(variables('vmName'),'/ConfigureIIS')]",
-          "apiVersion": "2015-06-15",
-          "location": "[resourceGroup().location]",
-          "dependsOn": [
-            "[resourceId('microsoft.compute/virtualMachines', variables('vmName'))]"
-            ],
-        "properties": {
-              "publisher": "Microsoft.PowerShell",
-              "type": "DSC",
-              "typeHandlerVersion":"2.11",
-              "autoUpgradeMinorVersion": true,
-              "settings": {
-                  "ConfigurationFunction": "[variables('vmConfigurationFunction')]",
-                  "modulesURI": "[concat(parameters('assetLocation'),'CreateVmwithIIS.ps1.zip')]"
+            "type": "Microsoft.Compute/virtualMachines/extensions",
+            "name": "[concat(variables('vmName'),'/ConfigureIIS')]",
+            "apiVersion": "2015-06-15",
+            "properties": {
+                "publisher": "Microsoft.PowerShell",
+                "type": "DSC",
+                "typeHandlerVersion": "2.21",
+                "autoUpgradeMinorVersion": true,
+                "settings": {
+                    "wmfVersion": "latest",
+                    "configuration": {
+                        "url": "[concat(parameters('assetLocation'),'CreateVmwithIIS.ps1.zip')]",
+                        "script": "CreateVmwithIIS.ps1",
+                        "function": "CreateVMwithIIS"
+                    },
+                    "configurationArguments": {
                     }
-            }  
-      }
-  ]
+                }
+            },
+            "dependsOn": [
+                "[resourceId('microsoft.compute/virtualMachines', variables('vmName'))]"
+            ]
+        }
+    ]
 }
