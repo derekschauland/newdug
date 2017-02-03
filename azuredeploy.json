@@ -2,6 +2,12 @@
   "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
+    "computername": {
+      "type": "string",
+      "metadata": {
+        "description": "The name of the VM being created."
+      }
+    },
     "adminUsername": {
       "type": "string",
       "metadata": {
@@ -56,7 +62,7 @@
     "subnetName": "Subnet",
     "subnetPrefix": "10.0.0.0/24",
     "publicIPAddressName": "myPublicIP",
-    "vmName": "newdug-iis",
+    "vmName": "[parameters('computername')]",
     "virtualNetworkName": "MyVNET",
     "subnetRef": "[resourceId('Microsoft.Network/virtualNetworks/subnets', variables('virtualNetworkName'), variables('subnetName'))]",
     "vmConfigurationFunction": "CreateVmwithIIS.ps1\\CreateVmwithIIS"
