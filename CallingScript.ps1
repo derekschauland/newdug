@@ -1,4 +1,5 @@
-﻿#break
+﻿#region Top Items
+#break
 
 # Shout out to @brwilkinson for assistance with some of this.
 
@@ -16,10 +17,12 @@
 
 # Import Azure Service Management module
 #Import-Module Azure -Verbose
+#endregion
 
 # Authenticate to your Azure account
+Write-Host "Script Started at $(Get-Date)"
 Import-Module AzureRM.profile
-if (Get-AzureRmSubscription -SubscriptionId 0cff33xxxxxxxxxxxxxxxxx)
+if (Get-AzureRmSubscription -SubscriptionId 0cff335b-e4a2-4bd7-a1c9-514d96399af8)
 {
     Write-Host "Already signed into Azure"
 }
@@ -29,40 +32,35 @@ else
     
 }
 
-# Adjust the 'yournamehere' part of these three strings to
-# something unique for you. Leave the last two characters in each.
 $URI       = 'https://raw.githubusercontent.com/derekschauland/newdug/master/azuredeploy.json'
 $Location  = 'centralus'
-$rgname    = 'newdugrg'
-$saname    = 'newdugsa'     # Lowercase required here
+$rgname    = 'test1'
+#$saname    = 'newdugstoragefeb'     # Lowercase required here
+#region
 #$addnsName = 'atwposhad'     # Lowercase required
 
 # Check that the public dns $addnsName is available
 #if (Test-AzureRmDnsAvailability -DomainNameLabel $addnsName -Location $Location)
 #{ 'DNS Name is Available' } else { 'Taken. addnsName must be globally unique.' }
-
+#endregion
 # Create the new resource group. Runs quickly.
 New-AzureRmResourceGroup -Name $rgname -Location $Location
-#Set-AzureRmResourceGroup -Name $rgname -Tag @{AutoShutdownSchedule ="00:30 -> 22:00"} #Set tag for auto off schedule
-
 # Parameters for the template and configuration
 $MyParams = @{
     #StorageAccountName         = $saname
     #location              = $location
     #domainName            = 'atwposh.local'
     #addnsName             = $addnsName
-   }
+}
 
 # Splat the parameters on New-AzureRmResourceGroupDeployment  
 $SplatParams = @{
     TemplateUri             = $URI 
     ResourceGroupName       = $rgname 
     TemplateParameterObject = $MyParams
-    Name                    = 'newdugdemo'
+    Name                    = 'DeployThis'
    }
 
-# This takes ~30 minutes
-# One prompt for the domain admin password
 New-AzureRmResourceGroupDeployment @SplatParams -Verbose
 
 # Find the VM IP and FQDN
@@ -72,6 +70,7 @@ $FQDN = $PublicAddress.DnsSettings.Fqdn
 
 # RDP either way
 Start-Process -FilePath mstsc.exe -ArgumentList "/v:$FQDN"
+#region
 #Start-Process -FilePath mstsc.exe -ArgumentList "/v:$IP"
 
 # Login as:  atwposh\adadministrator
@@ -83,7 +82,7 @@ Start-Process -FilePath mstsc.exe -ArgumentList "/v:$FQDN"
 #  Five new OU structures
 #  Users and populated groups within the OU structures
 #  Users root container has test users and populated test groups
-
+#endregion
 # Delete the entire resource group when finished
-#$rgname = 'newdugrg'
+#$rgname = 'newdug'
 #Remove-AzureRmResourceGroup -Name $rgname -Force -Verbose
